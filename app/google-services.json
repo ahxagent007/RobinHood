@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "826480969407",
+    "firebase_url": "https://robinhood-6fa9a.firebaseio.com",
+    "project_id": "robinhood-6fa9a",
+    "storage_bucket": "robinhood-6fa9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826480969407:android:ebb6a2f57d6a647fc0e80a",
+        "android_client_info": {
+          "package_name": "com.dexian.robinhood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826480969407-9tn3o7pn720flg8hi9pktt67ru7a3tb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dexian.robinhood",
+            "certificate_hash": "121cc30f2b9c5482887812af6035902cb16e5522"
+          }
+        },
+        {
+          "client_id": "826480969407-jfrsaurc2vfgvo4ec9mkdiphjfv2b9ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYlgn4gU3iQO-JlzlVo_us3t6ZKxw30QU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826480969407-jfrsaurc2vfgvo4ec9mkdiphjfv2b9ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
