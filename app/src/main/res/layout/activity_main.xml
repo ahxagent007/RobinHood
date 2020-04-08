@@ -1,18 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/main_logo"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_dark_red"
+                        android:layout_margin="5dp"
+                        android:text="Add Rescue"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_dark_red"
+                        android:layout_margin="5dp"
+                        android:text="Rescue List"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_dark_red"
+                        android:layout_margin="5dp"
+                        android:text="Veterinarian"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_dark_red"
+                        android:layout_margin="5dp"
+                        android:text="Emergency no."
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_dark_red"
+                        android:layout_margin="5dp"
+                        android:text="Members"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_dark_red"
+                        android:layout_margin="5dp"
+                        android:text="Donate"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:orientation="vertical"
+                android:background="@color/black">
+
+                <com.dexian.robinhood.TouchyWebView
+                    android:id="@+id/WV_fbPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/IV_robinHood"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/main_logo"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="7"
+                    android:text="Somthin goo to say on ths box is great to know about it"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rect_lite_blue"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Somthin goo to say on ths box is great to know about it"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Somthing goo to say on ths box is great to know about it"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Somthin goo to say on ths box is great to know about it"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_margin="5dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/secret_dev_logo"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Developed and maintain by,"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:fontFamily="cursive"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text="Abir Hossain Xian"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
