@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRescue"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RobinHood Animal Rescuer"
+                android:textColor="@color/darkRed"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fill up below into to rescue a animal"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:fontFamily="monospace"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Your Name:"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"/>
+
+            <EditText
+                android:id="@+id/ET_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_lite_blue"
+                android:hint="Name"
+                android:padding="3dp"
+                android:textColor="@color/darkRed"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Details about the event:"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"/>
+
+            <EditText
+                android:id="@+id/ET_details"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/rect_lite_blue"
+                android:hint="Details"
+                android:padding="3dp"
+                android:textColor="@color/darkRed"
+                android:gravity="start"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Select your area :"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"/>
+
+            <Spinner
+                android:id="@+id/SP_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Upload a photo:"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                
+                <ImageView
+                    android:id="@+id/IV_uploadImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/main_logo"/>
+
+                <Button
+                    android:id="@+id/btn_uploadImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Picture"
+                    android:background="@drawable/pressed_dark_red"
+                    android:textColor="@color/white"/>
+                
+            </LinearLayout>
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+
+            <Button
+                android:id="@+id/btn_rescueDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rescue"
+                android:textColor="@color/white"
+                android:background="@drawable/pressed_dark_red"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
