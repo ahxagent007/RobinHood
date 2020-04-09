@@ -55,26 +55,54 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Write a message to the database
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        btn_rescue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.i(TAG, "Value is: " + value);
-            }
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AddRescue.class));
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
             }
-        });*/
+        });
+
+        btn_vet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Veterinarian.class));
+
+            }
+        });
+
+        btn_emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Emergency.class));
+
+            }
+        });
+
+        btn_rescueList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RescueList.class));
+
+            }
+        });
+
+        btn_members.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Members.class));
+
+            }
+        });
+
+        btn_donate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Donate .class));
+
+            }
+        });
+
+
     }
 }
