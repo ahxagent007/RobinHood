@@ -37,6 +37,7 @@
                     android:weightSum="3">
 
                     <Button
+                        android:id="@+id/btn_rescue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -48,6 +49,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/btn_rescueList"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -59,6 +61,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/btn_vet"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -79,6 +82,7 @@
                     android:weightSum="3">
 
                     <Button
+                        android:id="@+id/btn_emergency"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -90,6 +94,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/btn_members"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -101,6 +106,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/btn_donate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -122,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
                 android:orientation="vertical"
-                android:background="@color/black">
+                android:background="@color/darkRed">
 
                 <com.dexian.robinhood.TouchyWebView
                     android:id="@+id/WV_fbPage"
@@ -229,6 +235,23 @@
                     android:fontFamily="monospace"
                     android:gravity="center"/>
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <Button
+                    android:id="@+id/btn_adminLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/pressed_dark_red"
+                    android:text="admin login"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
