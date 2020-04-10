@@ -147,6 +147,12 @@
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
+            <ProgressBar
+                android:id="@+id/PB_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"/>
+
 
             <Button
                 android:id="@+id/btn_rescueDone"

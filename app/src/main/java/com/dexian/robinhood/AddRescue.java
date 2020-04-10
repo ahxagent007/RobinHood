@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,12 +32,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.dexian.robinhood.DB.Area;
 import com.dexian.robinhood.DB.RescueDB;
 import com.dexian.robinhood.DB.Status;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -45,6 +50,7 @@ import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -56,7 +62,7 @@ public class AddRescue extends AppCompatActivity {
     Spinner SP_area;
     ImageView IV_uploadImage;
     Button btn_uploadImage, btn_rescueDone;
-    ProgressBar PB_uploading;
+    ProgressBar PB_uploading, PB_loading;
 
     private static final int PICK_IMAGE_REQUEST = 111;
     private Uri mImageUri;
@@ -69,7 +75,7 @@ public class AddRescue extends AppCompatActivity {
 
     //FIREBASE
     private StorageReference mStorageRef;
-    private DatabaseReference mDatabaseRef;
+    private DatabaseReference mDatabaseRef, mDatabaseRefArea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +90,40 @@ public class AddRescue extends AppCompatActivity {
         btn_uploadImage = findViewById(R.id.btn_uploadImage);
         btn_rescueDone = findViewById(R.id.btn_rescueDone);
         PB_uploading = findViewById(R.id.PB_uploading);
+        PB_loading = findViewById(R.id.PB_loading);
+
+        PB_loading.setVisibility(View.INVISIBLE);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("RESCUE_PICTURE");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("RESCUE");
+        mDatabaseRefArea = FirebaseDatabase.getInstance().getReference("AREA");
 
         generateLocation();
         simpleRequestGetIP();
+
+        final ArrayList<String> areasList = new ArrayList<String>();
+
+        mDatabaseRefArea.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                areasList.clear();
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    Area a = ds.getValue(Area.class);
+                    areasList.add(a.getName());
+                    //Log.i(TAG,ds.toString()+" "+ds.getKey());
+                }
+
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, areasList);
+                SP_area.setAdapter(spinnerArrayAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         btn_uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +138,11 @@ public class AddRescue extends AppCompatActivity {
                 rescueDB = new RescueDB();
 
                 if(ET_name.getText().toString().length()>0 && ET_details.getText().toString().length()>0 && ET_phone.getText().toString().length()>0){
-                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a");
+                    PB_loading.setVisibility(View.VISIBLE);
+                    btn_uploadImage.setEnabled(false);
+                    btn_rescueDone.setEnabled(false);
+
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     Date date = new Date();
                     String dddd = dateFormat.format(date);
 
@@ -119,33 +157,13 @@ public class AddRescue extends AppCompatActivity {
                     rescueDB.setTime(dddd);
 
                     uploadFileToFirebase();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Fill up Correctly", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
-
-        // Write a message to the database
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.i(TAG, "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });*/
     }
 
     private void simpleRequestGetIP() {
@@ -215,15 +233,17 @@ public class AddRescue extends AppCompatActivity {
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
+            Log.i(TAG, "LOCATION : "+latitude+","+longitude);
         }
 
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 10, locationListener);
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10, 10, locationListener);
     }
 
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
+            Log.i(TAG, "LOCATION : "+latitude+","+longitude);
         }
 
         @Override
@@ -249,7 +269,6 @@ public class AddRescue extends AppCompatActivity {
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
 
     }
-
 
     private String getFileExtention(Uri uri){
 
@@ -287,15 +306,15 @@ public class AddRescue extends AppCompatActivity {
             fileRef.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Handler handler = new Handler();
+                    /*Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             PB_uploading.setProgress(0);
                         }
-                    },5000);
+                    },5000);*/
 
-                    Toast.makeText(getApplicationContext(),"SUCCESSFULLY ADDED",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"SUCCESSFULLY Uploaded",Toast.LENGTH_LONG).show();
 
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -313,6 +332,12 @@ public class AddRescue extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getApplicationContext(),"UPLOAD FAILED",Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "UPLOAD FAILED : "+e);
+
+                    btn_uploadImage.setEnabled(true);
+                    btn_rescueDone.setEnabled(true);
+                    PB_loading.setVisibility(View.INVISIBLE);
+
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -324,6 +349,8 @@ public class AddRescue extends AppCompatActivity {
 
         }else{
             Toast.makeText(getApplicationContext(),"NO IMAGE SELECTED!",Toast.LENGTH_SHORT).show();
+            btn_uploadImage.setEnabled(true);
+            btn_rescueDone.setEnabled(true);
         }
 
     }
@@ -331,8 +358,29 @@ public class AddRescue extends AppCompatActivity {
     private void addToFirebaseDatabase(){
 
         mDatabaseRef.child(""+rescueDB.getID()).setValue(rescueDB);
+        Toast.makeText(getApplicationContext(),"SUCCESSFULLY ADDED",Toast.LENGTH_LONG).show();
 
-        //ResetAll();
+        ResetAll();
+
+    }
+
+    private void ResetAll() {
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                PB_uploading.setProgress(0);
+                ET_name.setText("");
+                ET_details.setText("");
+                ET_phone.setText("");
+                ET_name.setHint("Name");
+                ET_details.setHint("Details");
+                ET_phone.setHint("Phone");
+
+                btn_uploadImage.setEnabled(true);
+                btn_rescueDone.setEnabled(true);
+                PB_loading.setVisibility(View.INVISIBLE);
+            }
+        });
 
     }
 }
