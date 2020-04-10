@@ -13,15 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreenActivity"></activity>
-        <activity android:name=".Donate" />
-        <activity android:name=".Members" />
-        <activity android:name=".Emergency" />
-        <activity android:name=".Veterinarian" />
-        <activity android:name=".RescueList" />
-        <activity android:name=".AddRescue" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.SplashScreenActivity"></activity>
+        <activity android:name=".Activity.Donate" />
+        <activity android:name=".Activity.Members" />
+        <activity android:name=".Activity.Emergency" />
+        <activity android:name=".Activity.Veterinarian" />
+        <activity android:name=".Activity.RescueList" />
+        <activity android:name=".Activity.AddRescue" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.dexian.robinhood;
+package com.dexian.robinhood.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +35,7 @@ import com.android.volley.toolbox.Volley;
 import com.dexian.robinhood.DB.Area;
 import com.dexian.robinhood.DB.RescueDB;
 import com.dexian.robinhood.DB.Status;
+import com.dexian.robinhood.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;

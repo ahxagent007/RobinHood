@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRescue"
+    tools:context=".Activity.AddRescue"
     android:orientation="vertical">
 
     <ScrollView
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:text="RobinHood Animal Rescuer"
                 android:textColor="@color/darkRed"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:textStyle="bold"
                 android:fontFamily="serif"
                 android:gravity="center"

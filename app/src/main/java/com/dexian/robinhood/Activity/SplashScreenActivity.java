@@ -1,4 +1,4 @@
-package com.dexian.robinhood;
+package com.dexian.robinhood.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.dexian.robinhood.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
