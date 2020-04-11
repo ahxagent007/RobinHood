@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Donate extends AppCompatActivity {
 
@@ -95,6 +96,8 @@ public class Donate extends AppCompatActivity {
                     bKashHistories.add(res);
                 }
 
+                Collections.reverse(bKashHistories);
+
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 RV_donateList.setLayoutManager(mLayoutManager);
 
@@ -139,8 +142,15 @@ public class Donate extends AppCompatActivity {
         public void onBindViewHolder(RecycleViewAdapterForDonateHistory.ViewHolder viewHolder, final int i) {
 
 
-            viewHolder.TV_mobile.setText(bKashHistories.get(i).getMOBILE());
-            viewHolder.TV_ref.setText(bKashHistories.get(i).getREF());
+            String number = bKashHistories.get(i).getMOBILE();
+            String hiddenNumber = number.substring(0,3);
+            for(int z=3; z<number.length()-3; z++){
+                hiddenNumber += "X";
+            }
+            hiddenNumber += number.substring(number.length()-3,number.length());
+
+            viewHolder.TV_mobile.setText(hiddenNumber);
+            viewHolder.TV_ref.setText("Ref: "+bKashHistories.get(i).getREF());
             viewHolder.TV_amount.setText("TK. "+bKashHistories.get(i).getAMOUNT());
 
 
