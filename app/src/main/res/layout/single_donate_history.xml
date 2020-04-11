@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="5dp"
+    android:padding="5dp"
+    android:weightSum="10"
+    android:background="@drawable/rect_lite_blue">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TV_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="016XXXXX900"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:padding="5dp"/>
+        <TextView
+            android:id="@+id/TV_ref"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ref: xian"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:textSize="15dp"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/TV_amount"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:text="TK. 100000"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:padding="5dp"
+        android:gravity="center"/>
+
+</LinearLayout>
