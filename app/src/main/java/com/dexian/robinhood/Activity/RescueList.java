@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class RescueList extends AppCompatActivity {
 
@@ -67,6 +68,8 @@ public class RescueList extends AppCompatActivity {
                     rescueDBS.add(res);
                     //Log.i(TAG,ds.toString()+" "+ds.getKey());
                 }
+
+                Collections.reverse(rescueDBS);
 
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 RV_rescueList.setLayoutManager(mLayoutManager);
@@ -114,6 +117,7 @@ public class RescueList extends AppCompatActivity {
             Glide.with(getApplicationContext()).load(rescueDBS.get(i).getPictureName()).transform(new CenterInside(),new RoundedCorners(10)).dontAnimate().into(viewHolder.IV_pic);
             viewHolder.TV_details.setText(rescueDBS.get(i).getDetails());
             viewHolder.TV_location.setText("Location: "+rescueDBS.get(i).getArea());
+            viewHolder.TV_time.setText(rescueDBS.get(i).getTime());
 
             viewHolder.TV_status.setText("Status: "+rescueDBS.get(i).getStatus());
 
@@ -152,7 +156,7 @@ public class RescueList extends AppCompatActivity {
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
             ImageView IV_pic;
-            TextView TV_details, TV_location, TV_status;
+            TextView TV_details, TV_location, TV_status, TV_time;
             Button btn_rescueOP;
 
             private ItemClickListener clickListener;
@@ -165,6 +169,7 @@ public class RescueList extends AppCompatActivity {
                 TV_location = itemView.findViewById(R.id.TV_location);
                 TV_status = itemView.findViewById(R.id.TV_status);
                 btn_rescueOP = itemView.findViewById(R.id.btn_rescueOP);
+                TV_time = itemView.findViewById(R.id.TV_time);
 
                 itemView.setOnClickListener(this);
                 itemView.setOnLongClickListener(this);
