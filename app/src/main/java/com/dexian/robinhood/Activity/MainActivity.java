@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dexian.robinhood.DB.Post;
 import com.dexian.robinhood.DB.bKash;
 import com.dexian.robinhood.R;
+import com.dexian.robinhood.SharedPreffClass;
 import com.dexian.robinhood.TouchyWebView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn_adminLogin, btn_rescue, btn_rescueList, btn_vet, btn_emergency, btn_members, btn_donate;
     TextView TV_news1, TV_news2, TV_news3;
+    LinearLayout LL_admin;
+    Button btn_adminLogout, btn_adminAddbKash, btn_adminAddPost, btn_adminAddMember, btn_adminAddEmergency, btn_adminAddVet;
 
     DatabaseReference mDatabaseRefPost;
 
@@ -50,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         TV_news2 = findViewById(R.id.TV_news2);
         TV_news3 = findViewById(R.id.TV_news3);
 
+        LL_admin = findViewById(R.id.LL_admin);
+        btn_adminLogout = findViewById(R.id.btn_adminLogout);
+        btn_adminAddbKash = findViewById(R.id.btn_adminAddbKash);
+        btn_adminAddPost = findViewById(R.id.btn_adminAddPost);
+        btn_adminAddMember = findViewById(R.id.btn_adminAddMember);
+        btn_adminAddEmergency = findViewById(R.id.btn_adminAddEmergency);
+        btn_adminAddVet = findViewById(R.id.btn_adminAddVet);
+
 
         WV_fbPage.getSettings().setJavaScriptEnabled(true);
         //WV_fbPage.getSettings().setLoadWithOverviewMode(true);
@@ -58,6 +70,21 @@ public class MainActivity extends AppCompatActivity {
         WV_fbPage.setVerticalScrollBarEnabled(true);
         WV_fbPage.getSettings().setBuiltInZoomControls(true);
 
+        if(!new SharedPreffClass(getApplicationContext()).getUserID().equalsIgnoreCase("-1")){
+            LL_admin.setVisibility(View.VISIBLE);
+            btn_adminLogin.setVisibility(View.GONE);
+
+            btn_adminLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new SharedPreffClass(getApplicationContext()).setUserID("-1");
+                    startActivity(getIntent());
+                    finish();
+                }
+            });
+        }else{
+            LL_admin.setVisibility(View.GONE);
+        }
 
         WV_fbPage.loadUrl("https://m.facebook.com/junglesdad/");
 

@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.dexian.robinhood.BackgroundNotificationService;
@@ -44,10 +45,19 @@ public class SplashScreenActivity extends AppCompatActivity {
             } else {
                 startService(backgroundServiceIntent);
             }
-
         }
 
-        /*NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        }, 3000);
+
+        /*
+        URL = https://developer.android.com/training/notify-user/build-notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                 .setSmallIcon(R.drawable.main_logo)
                 .setContentTitle("My notification")
                 .setContentText("Much longer text that cannot fit one line...")
