@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             //Log.i(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             new SharedPreffClass(getApplicationContext()).saveUserName(user.getDisplayName());
-                            new SharedPreffClass(getApplicationContext()).saveUserID(user.getUid());
+                            new SharedPreffClass(getApplicationContext()).setUserID(user.getUid());
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             //updateUI(user);
                         } else {

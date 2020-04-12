@@ -108,4 +108,20 @@ public class RescueDB {
     public void setIP(String IP) {
         this.IP = IP;
     }
+
+    @Override
+    public String toString() {
+        return "RescueDB{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", Details='" + Details + '\'' +
+                ", PictureName='" + PictureName + '\'' +
+                ", Time='" + Time + '\'' +
+                ", Location='" + Location + '\'' +
+                ", Area='" + Area + '\'' +
+                ", Status='" + Status + '\'' +
+                ", IP='" + IP + '\'' +
+                '}';
+    }
 }

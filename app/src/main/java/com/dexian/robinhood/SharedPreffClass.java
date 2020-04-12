@@ -12,7 +12,7 @@ public class SharedPreffClass {
     }
 
 
-    public void saveUserID(String id){
+    public void setUserID(String id){
         SharedPreferences mSharedPreferences = context.getSharedPreferences("DATA", Context.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putString("USER_ID", id);
@@ -21,9 +21,25 @@ public class SharedPreffClass {
     }
 
 
-    public String getIPAddress() {
+    public String getUserID() {
         SharedPreferences mSharedPreferences = context.getSharedPreferences("DATA", Context.MODE_PRIVATE);
         String s = mSharedPreferences.getString("USER_ID", "-1");
+
+        return s;
+    }
+
+    public void setLastRescueID(String id){
+        SharedPreferences mSharedPreferences = context.getSharedPreferences("DATA", Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString("RESCUE_ID", id);
+
+        mEditor.apply();
+    }
+
+
+    public String getLastRescueID() {
+        SharedPreferences mSharedPreferences = context.getSharedPreferences("DATA", Context.MODE_PRIVATE);
+        String s = mSharedPreferences.getString("RESCUE_ID", "-1");
 
         return s;
     }
