@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RobinHood Animal Rescuer"
+        android:text="@string/app_big_name"
         android:textColor="@color/darkRed"
         android:textSize="25dp"
         android:textStyle="bold"

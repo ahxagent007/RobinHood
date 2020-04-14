@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">RobinHood</string>
+    <string name="app_name">Robin Hood</string>
+    <string name="app_big_name">Robin Hood the Animal Rescuer</string>
 </resources>

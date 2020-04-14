@@ -36,8 +36,14 @@ import com.dexian.robinhood.DB.Area;
 import com.dexian.robinhood.DB.RescueDB;
 import com.dexian.robinhood.DB.Status;
 import com.dexian.robinhood.R;
+import com.dexian.robinhood.SharedPreffClass;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -73,7 +79,7 @@ public class AddRescue extends AppCompatActivity {
     double longitude;
     double latitude;
     String IP = "***.***.***.***";
-
+    Long ID_firebase = (long)0;
     //FIREBASE
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef, mDatabaseRefArea;
@@ -102,6 +108,14 @@ public class AddRescue extends AppCompatActivity {
         generateLocation();
         simpleRequestGetIP();
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            // do your stuff
+        } else {
+            signIn("xian@xian.com", "123456789");
+        }
+
         final ArrayList<String> areasList = new ArrayList<String>();
 
         mDatabaseRefArea.addValueEventListener(new ValueEventListener() {
@@ -118,6 +132,20 @@ public class AddRescue extends AppCompatActivity {
                 ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, areasList);
                 SP_area.setAdapter(spinnerArrayAdapter);
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabaseRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    ID_firebase = Long.parseLong(ds.getKey());
+                }
             }
 
             @Override
@@ -152,7 +180,7 @@ public class AddRescue extends AppCompatActivity {
                     rescueDB.setDetails(ET_details.getText().toString());
                     rescueDB.setArea(SP_area.getSelectedItem().toString());
                     rescueDB.setLocation(latitude+","+longitude);
-                    rescueDB.setID(System.currentTimeMillis());
+                    rescueDB.setID((ID_firebase+1));
                     rescueDB.setIP(IP);
                     rescueDB.setStatus("PENDING");
                     rescueDB.setTime(dddd);
@@ -307,15 +335,15 @@ public class AddRescue extends AppCompatActivity {
             fileRef.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    /*Handler handler = new Handler();
+                    Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             PB_uploading.setProgress(0);
                         }
-                    },5000);*/
+                    },5000);
 
-                    Toast.makeText(getApplicationContext(),"SUCCESSFULLY Uploaded",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"SUCCESSFULLY Uploaded",Toast.LENGTH_LONG).show();
 
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -353,6 +381,52 @@ public class AddRescue extends AppCompatActivity {
             btn_uploadImage.setEnabled(true);
             btn_rescueDone.setEnabled(true);
         }
+
+    }
+
+    FirebaseAuth mAuth;
+
+    private void signInAnonymously() {
+        mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                // do your stuff
+                Log.i(TAG,"signInAnonymously DONE");
+            }
+        })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e(TAG, "signInAnonymously:FAILURE", exception);
+                    }
+                });
+    }
+
+    private void signIn(String email, String pass){
+
+        mAuth.signInWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            //Log.i(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Log.i(TAG, "SING IN DONE");
+                            /*new SharedPreffClass(getApplicationContext()).saveUserName(user.getDisplayName());
+                            new SharedPreffClass(getApplicationContext()).setUserID(user.getUid());
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));*/
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.i(TAG, "Singin Fails");
+                            //updateUI(null);
+                            // ...
+                        }
+
+                        // ...
+                    }
+                });
 
     }
 

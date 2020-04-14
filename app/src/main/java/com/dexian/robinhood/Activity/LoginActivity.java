@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             new SharedPreffClass(getApplicationContext()).saveUserName(user.getDisplayName());
                             new SharedPreffClass(getApplicationContext()).setUserID(user.getUid());
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

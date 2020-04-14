@@ -10,6 +10,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.dexian.robinhood.DB.RescueDB;
 import com.google.firebase.database.ChildEventListener;
@@ -80,6 +82,22 @@ public class BackgroundNotificationService extends Service {
                     Log.i(TAG, "OLD RESCUE NOTIFICATION");
                 }else{
                     Log.i(TAG, res.toString());
+                    if(res.getStatus().equalsIgnoreCase("PENDING")){
+                        String CHANNEL_ID = "RESCUE";
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                .setSmallIcon(R.drawable.main_logo)
+                                .setContentTitle("Rescue Needed")
+                                .setContentText("Location : "+res.getArea())
+                                .setStyle(new NotificationCompat.BigTextStyle()
+                                        .bigText(res.getDetails()+"\n"+"Location : "+res.getArea()))
+                                .setPriority(NotificationCompat.PRIORITY_MAX);
+
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+
+                        // notificationId is a unique int for each notification that you must define
+                        notificationManager.notify(1, builder.build());
+
+                    }
                     new SharedPreffClass(getApplicationContext()).setLastRescueID(""+res.getID());
                 }
             }
