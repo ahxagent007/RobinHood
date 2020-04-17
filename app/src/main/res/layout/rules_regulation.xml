@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="ভলেন্টিয়ার হওয়ার নিয়মাবলী ও চুক্তি:"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="* নিম্নলিখিত নিয়মাবলী মেনে সজ্ঞানে ইচ্ছা পোষণ করে চুক্তিবদ্ধ হযে এই ভলেন্টিয়ার কাজে নিয়জিত হলাম: "
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="— চুক্তিসাক্ষর এর পর কোন নিয়মাবলী আমার দ্বারা ভঙ্গ হলে সমস্ত দায়ভার আমাকে নিতে হবে! "
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="১। সংগঠন এর পোশাক বা আইডি কার্ড নিজ দায়িত্বে রাখব। হারিয়ে গেলে বা সংগঠন থেকে বের হয়ে গেলে কর্তৃপক্ষকে জানাবো। এটার কোনও প্রকার অপব্যবহারের দায়ীত্ব আমাকেই নিতে হবে।"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="২। সংগঠনের তথ্যাবলি এবং সাংগঠনিক আলোচনা বাইরে প্রকাশ করা যাবে না। প্রমাণিত হলে কর্তৃপক্ষ ব্যবস্থা নিবেন।"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="৩। উদ্ধার অভিযানে কারো সাথে তর্ক/ঝগড়া/বিবাধে জড়ানো যাবে না।"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="৪। কর্তৃপক্ষের অনুমতি ছাড়া নিজে শারীরিক ভাবে ঝুঁকি আছে এমন কোনও কাজে অংশগ্রহণ করা যাবেন না। অনুমতি ব্যতীত স্বপ্রণোদিত হয়ৈ কোন ঝুঁকিপূর্ণ স্থানে কোনও কাজ কিংবা উদ্ধার অভিযান করলে সমস্ত দাঁয়-দায়িত্ব নিজেকেই নিতে হবে। "
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="৫। সংগঠনের মালামাল নিজ দায়ীত্বে হেফাজত করতে হবে।"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="৬। ভলেন্টিয়অর হওয়ার নিয়মাবলী চুক্তি তে সাক্ষর না করে ভলেন্টিয়ার হওয়া যাবে না এবং কোনও কার্যক্রমে অংশগ্রহণ করা যাবে না। "
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="৭। সংগঠনের সাথে যুক্ত না থাকতে চাইলে সংগটনের চেয়ারম্যান বরাবর *যুক্ত না থাকার কারণ* জানিয়ে দরখান্ত দিয়ে অবহিত করতে হবে। সাথে পোশাক এবং আইডি কার্ড জমা দিতে হবে। নাহলে আইনানুগ ব্যবস্থা গ্রহণ করা হতে পারে।"
+                android:textSize="20dp"/>
+
+
+            <Button
+                android:id="@+id/btn_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:layout_gravity="center"
+                android:background="@drawable/pressed_dark_blue"
+                android:layout_margin="10dp"/>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
