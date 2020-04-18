@@ -47,44 +47,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="2"
+                    android:gravity="center">
 
                     <Button
                         android:id="@+id/btn_rescue"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:background="@drawable/pressed_dark_red"
+                        android:background="@drawable/pressed_add"
                         android:layout_margin="5dp"
-                        android:text="Request Rescue"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
 
                     <Button
                         android:id="@+id/btn_rescueList"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:background="@drawable/pressed_dark_red"
+                        android:background="@drawable/pressed_rescue_list"
                         android:layout_margin="5dp"
-                        android:text="Rescue List"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
-
-                    <Button
-                        android:id="@+id/btn_rescueNews"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/pressed_dark_red"
-                        android:layout_margin="5dp"
-                        android:text="Rescue News"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
-
 
                 </LinearLayout>
 
@@ -94,40 +80,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="2">
 
                     <Button
-                        android:id="@+id/btn_emergency"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_rescueNews"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:background="@drawable/pressed_dark_red"
+                        android:background="@drawable/pressed_news"
                         android:layout_margin="5dp"
-                        android:text="Emergency Numbers"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
+
 
                     <Button
                         android:id="@+id/btn_beVolunteer"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:background="@drawable/pressed_dark_red"
+                        android:background="@drawable/pressed_volunteer"
                         android:layout_margin="5dp"
-                        android:text="Watn to Be a volunteer?"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
-
-                    <Button
-                        android:id="@+id/btn_donate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/pressed_dark_red"
-                        android:layout_margin="5dp"
-                        android:text="Donation"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
@@ -136,17 +109,71 @@
                 </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/btn_callUs"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Talk with us directly"
-                    android:layout_gravity="center"
-                    android:background="@drawable/pressed_dark_blue"
-                    android:textColor="@color/white"
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:layout_margin="10dp"/>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btn_emergency"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_emergency"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                    <Button
+                        android:id="@+id/btn_donate"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_donation"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btn_callUs"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_talk_with_us"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                    <Button
+                        android:id="@+id/btn_pictures"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_photo_gellary"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -332,6 +359,15 @@
             </LinearLayout>
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/darkRed"
+                android:text="Follow us:"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -372,7 +408,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -415,7 +451,7 @@
                 </LinearLayout>
 
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
