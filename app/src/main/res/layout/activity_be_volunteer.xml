@@ -101,6 +101,24 @@
                 android:hint="Mother's Name"
                 android:padding="3dp"
                 android:textColor="@color/darkRed"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Personal Phone number:"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="italic"/>
+
+            <EditText
+                android:id="@+id/ET_Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_lite_blue"
+                android:hint="Phoen Number"
+                android:padding="3dp"
+                android:textColor="@color/darkRed"
+                android:inputType="phone"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -143,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="Why you want to wark with Robin Hood ?"
+                android:text="Why you want to work with RobinHood ?"
                 android:layout_margin="5dp"
                 android:textColor="@color/black"
                 android:textStyle="italic"/>
