@@ -18,17 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.BeVolunteer"></activity>
+        <activity android:name=".Activity.RescueNewsActivity"></activity>
+        <activity android:name=".Activity.PhotoGalleryActivity" />
+        <activity android:name=".Activity.BeVolunteer" />
 
         <service
             android:name=".BackgroundNotificationService"
-            android:enabled="true"></service>
+            android:enabled="true" />
 
         <receiver
             android:name=".BackgroundNotificationBroadcastReceiver"
             android:enabled="true"
             android:exported="true"
-            android:label="RestartServiceWhenStopped"></receiver>
+            android:label="RestartServiceWhenStopped" />
 
         <activity android:name=".Activity.SplashScreenActivity">
             <intent-filter>
@@ -44,7 +46,7 @@
         <activity android:name=".Activity.RescueList" />
         <activity android:name=".Activity.AddRescue" />
         <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.MainActivity" />
     </application>
 
 </manifest>

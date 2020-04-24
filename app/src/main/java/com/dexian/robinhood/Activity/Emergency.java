@@ -1,11 +1,18 @@
 package com.dexian.robinhood.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -113,6 +120,7 @@ public class Emergency extends AppCompatActivity {
 
                     } else {
                         //Call that number
+                        makeCall(emergencyDBS.get(i).getNUMBER());
                     }
                 }
             });
@@ -154,6 +162,60 @@ public class Emergency extends AppCompatActivity {
                 return true;
             }
         }
+
+    }
+
+
+    private void makeCall(final String number) {
+
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        // Add the buttons
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+
+                Intent intent = new Intent(Intent.ACTION_CALL);
+
+                intent.setData(Uri.parse("tel:" + number));
+
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+                /*
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+
+                }else{
+
+                }*/
+                //startActivity(intent);
+
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+                dialog.cancel();
+            }
+        });
+        // Set other dialog properties
+        builder.setMessage("Do you want to make call?");
+        builder.setTitle("Call "+number);
+
+        // Create the AlertDialog
+        dialog = builder.create();
+        dialog.show();
+
+
 
     }
 }

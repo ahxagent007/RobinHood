@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.dexian.robinhood.BackgroundNotificationService;
 import com.dexian.robinhood.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
 
         /*backgroundNotificationService = new BackgroundNotificationService(getApplicationContext());
 
@@ -62,8 +65,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }else{
-                        Toast.makeText(getApplicationContext(),"NO INTERNET CONNECTION", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(getApplicationContext(),"OFFLINE MODE", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     }
 
                 }

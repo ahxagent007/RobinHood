@@ -189,6 +189,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_rescueNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RescueNewsActivity.class));
+            }
+        });
+
         final ArrayList<Post> posts = new ArrayList<Post>();
 
         mDatabaseRefPost = FirebaseDatabase.getInstance().getReference("POST");
@@ -229,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         // Add the buttons
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Directly", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
 
@@ -259,14 +266,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("999", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User cancelled the dialog
-                dialog.cancel();
+                Intent intent = new Intent(Intent.ACTION_CALL);
+
+                intent.setData(Uri.parse("tel:999"));
+
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
             }
         });
          // Set other dialog properties
-        builder.setMessage("Do you want to call ?");
+        builder.setMessage("Talk to us through 999 or Directly ?");
         builder.setTitle("Make call");
 
          // Create the AlertDialog
