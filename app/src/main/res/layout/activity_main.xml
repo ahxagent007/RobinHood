@@ -54,33 +54,12 @@
                         android:id="@+id/btn_rescue"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/pressed_add"
                         android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/pressed_rescue"
                         android:textColor="@color/white"
                         android:textSize="10dp"
-                        android:textStyle="bold"/>
-
-                    <Button
-                        android:id="@+id/btn_rescueList"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/pressed_rescue_list"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btn_rescueNews"
@@ -94,20 +73,7 @@
                         android:textStyle="bold"/>
 
 
-                    <Button
-                        android:id="@+id/btn_beVolunteer"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/pressed_volunteer"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:textStyle="bold"/>
-
-
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,12 +81,14 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
+
+
                     <Button
-                        android:id="@+id/btn_emergency"
+                        android:id="@+id/btn_beVolunteer"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:background="@drawable/pressed_emergency"
+                        android:background="@drawable/pressed_volunteer"
                         android:layout_margin="5dp"
                         android:textColor="@color/white"
                         android:textSize="10dp"
@@ -170,6 +138,19 @@
                         android:textSize="10dp"
                         android:textStyle="bold"/>
 
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pressed_website"/>
 
                 </LinearLayout>
 
@@ -277,8 +258,6 @@
 
             </LinearLayout>
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -358,7 +337,6 @@
 
             </LinearLayout>
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,7 +371,7 @@
 
 
             </LinearLayout>
-
+<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
@@ -406,7 +384,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"/>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <!--<LinearLayout
                 android:layout_width="match_parent"
@@ -452,6 +430,23 @@
 
 
             </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_emergency_call"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/pressed_emergency_call"/>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

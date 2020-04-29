@@ -41,7 +41,7 @@ public class Donate extends AppCompatActivity {
     private DatabaseReference mDatabaseRefDonateHistory, mDatabaseRefbKashNo;
     RecyclerView RV_donateList;
     ProgressBar PB_donateHistory;
-    TextView TV_bkash01, TV_bkash02;
+    TextView TV_bkash01, TV_bkash02, TV_bkash03;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class Donate extends AppCompatActivity {
         PB_donateHistory = findViewById(R.id.PB_donateHistory);
         TV_bkash01 = findViewById(R.id.TV_bkash01);
         TV_bkash02 = findViewById(R.id.TV_bkash02);
+        TV_bkash03 = findViewById(R.id.TV_bkash03);
 
         mDatabaseRefDonateHistory = FirebaseDatabase.getInstance().getReference("BKASH_HISTORY");
         mDatabaseRefbKashNo = FirebaseDatabase.getInstance().getReference("BKASH");
@@ -75,6 +76,7 @@ public class Donate extends AppCompatActivity {
                         if(bKashs.size() > 1){
                             TV_bkash01.setText(bKashs.get(0).getNUMBER());
                             TV_bkash02.setText(bKashs.get(1).getNUMBER());
+                            TV_bkash03.setText(bKashs.get(2).getNUMBER());
                         }
                     }
                 });

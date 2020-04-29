@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
     String TAG = "XIAN";
 
-    TouchyWebView WV_fbPage;
+    //TouchyWebView WV_fbPage;
 
-    Button btn_adminLogin, btn_rescue, btn_rescueList, btn_emergency, btn_members, btn_donate, btn_rescueNews, btn_beVolunteer, btn_callUs;
+    Button btn_adminLogin, btn_rescue, btn_donate, btn_rescueNews, btn_beVolunteer, btn_callUs;
     TextView TV_news1, TV_news2, TV_news3;
     LinearLayout LL_admin;
-    Button btn_adminLogout, btn_adminAddbKash, btn_adminAddPost, btn_adminAddMember, btn_adminAddEmergency, btn_adminAddVet;
+    Button btn_adminLogout, btn_adminAddbKash, btn_adminAddPost, btn_adminAddMember, btn_adminAddEmergency, btn_adminAddVet, btn_website, btn_emergency_call;
     ImageView IV_FB, IV_YT;
 
     DatabaseReference mDatabaseRefPost;
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WV_fbPage = findViewById(R.id.WV_fbPage);
+        //WV_fbPage = findViewById(R.id.WV_fbPage);
         btn_adminLogin = findViewById(R.id.btn_adminLogin);
         btn_rescue = findViewById(R.id.btn_rescue);
         //btn_vet = findViewById(R.id.btn_vet);
-        btn_emergency = findViewById(R.id.btn_emergency);
-        btn_rescueList = findViewById(R.id.btn_rescueList);
+        //btn_emergency = findViewById(R.id.btn_emergency);
+        //btn_rescueList = findViewById(R.id.btn_rescueList);
         //btn_members = findViewById(R.id.btn_members);
         btn_donate = findViewById(R.id.btn_donate);
         TV_news1 = findViewById(R.id.TV_news1);
@@ -74,16 +74,19 @@ public class MainActivity extends AppCompatActivity {
         btn_adminAddEmergency = findViewById(R.id.btn_adminAddEmergency);
         btn_adminAddVet = findViewById(R.id.btn_adminAddVet);
 
+        btn_website = findViewById(R.id.btn_website);
+
         IV_FB = findViewById(R.id.IV_FB);
         IV_YT = findViewById(R.id.IV_YT);
 
+        btn_emergency_call = findViewById(R.id.btn_emergency_call);
 
-        WV_fbPage.getSettings().setJavaScriptEnabled(true);
+        /*WV_fbPage.getSettings().setJavaScriptEnabled(true);
         //WV_fbPage.getSettings().setLoadWithOverviewMode(true);
         //WV_fbPage.getSettings().setUseWideViewPort(true);
         // WV_fbPage.getSettings().setSupportZoom(true);
         WV_fbPage.setVerticalScrollBarEnabled(true);
-        WV_fbPage.getSettings().setBuiltInZoomControls(true);
+        WV_fbPage.getSettings().setBuiltInZoomControls(true);*/
 
         if (!new SharedPreffClass(getApplicationContext()).getUserID().equalsIgnoreCase("-1")) {
             LL_admin.setVisibility(View.VISIBLE);
@@ -102,7 +105,14 @@ public class MainActivity extends AppCompatActivity {
         }
         //http://animalcaretrustbangladesh.org/
         //https://m.facebook.com/junglesdad/
-        WV_fbPage.loadUrl("http://animalcaretrustbangladesh.org/");
+        //WV_fbPage.loadUrl("http://animalcaretrustbangladesh.org/");
+
+        btn_website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), WebsiteView.class));
+            }
+        });
 
         btn_adminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,8 +125,15 @@ public class MainActivity extends AppCompatActivity {
         btn_rescue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), AddRescue.class));
+                startActivity(new Intent(getApplicationContext(), Rescue.class));
 
+            }
+        });
+
+        btn_emergency_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                makeCall999();
             }
         });
 
@@ -128,21 +145,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        btn_emergency.setOnClickListener(new View.OnClickListener() {
+        /*btn_emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Emergency.class));
 
             }
-        });
+        });*/
 
-        btn_rescueList.setOnClickListener(new View.OnClickListener() {
+        /*btn_rescueList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RescueList.class));
 
             }
-        });
+        });*/
 
         /*btn_members.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,6 +308,58 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("Make call");
 
          // Create the AlertDialog
+        dialog = builder.create();
+        dialog.show();
+
+
+
+    }
+
+    private void makeCall999() {
+
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        // Add the buttons
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+
+                Intent intent = new Intent(Intent.ACTION_CALL);
+
+                intent.setData(Uri.parse("tel:" + "999"));
+
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+                /*
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+
+                }else{
+
+                }*/
+                //startActivity(intent);
+
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        // Set other dialog properties
+        builder.setMessage("Do you want to call 999 ?");
+        builder.setTitle("Make call");
+
+        // Create the AlertDialog
         dialog = builder.create();
         dialog.show();
 

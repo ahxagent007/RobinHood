@@ -21,7 +21,7 @@
             android:text="016XXXXX900"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:padding="5dp"/>
         <TextView
             android:id="@+id/TV_ref"
@@ -30,7 +30,7 @@
             android:text="Ref: xian"
             android:textColor="@color/black"
             android:textStyle="italic"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:padding="5dp"/>
 
     </LinearLayout>

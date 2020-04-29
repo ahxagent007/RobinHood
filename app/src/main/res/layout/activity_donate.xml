@@ -32,7 +32,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:src="@drawable/bkash"/>
 
     <TextView
@@ -47,6 +47,16 @@
         android:padding="5dp"/>
     <TextView
         android:id="@+id/TV_bkash02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loading bKash Number..."
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:fontFamily="monospace"
+        android:padding="5dp"/>
+    <TextView
+        android:id="@+id/TV_bkash03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Loading bKash Number..."

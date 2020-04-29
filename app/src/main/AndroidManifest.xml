@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.RescueNewsActivity"></activity>
+        <activity android:name=".Activity.Rescue"></activity>
+        <activity android:name=".Activity.WebsiteView" />
+        <activity android:name=".Activity.RescueNewsActivity" />
         <activity android:name=".Activity.PhotoGalleryActivity" />
         <activity android:name=".Activity.BeVolunteer" />
 
