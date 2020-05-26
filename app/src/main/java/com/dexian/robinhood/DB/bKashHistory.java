@@ -9,6 +9,13 @@ public class bKashHistory {
     public bKashHistory() {
     }
 
+    public bKashHistory(long ID, String MOBILE, String REF, int AMOUNT) {
+        this.ID = ID;
+        this.MOBILE = MOBILE;
+        this.REF = REF;
+        this.AMOUNT = AMOUNT;
+    }
+
     public long getID() {
         return ID;
     }

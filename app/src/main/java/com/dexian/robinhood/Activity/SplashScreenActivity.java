@@ -23,7 +23,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.dexian.robinhood.BackgroundNotificationService;
+//import com.dexian.robinhood.BackgroundNotificationService;
 import com.dexian.robinhood.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,8 +36,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     String TAG = "XIAN";
     String CHANNEL_ID = "111";
 
-    BackgroundNotificationService backgroundNotificationService;
-    Intent backgroundServiceIntent;
+    //BackgroundNotificationService backgroundNotificationService;
+    //Intent backgroundServiceIntent;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

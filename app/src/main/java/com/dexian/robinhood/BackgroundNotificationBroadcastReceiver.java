@@ -7,7 +7,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-
+/*
 public class BackgroundNotificationBroadcastReceiver extends BroadcastReceiver {
     String TAG = "XIAN";
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -22,4 +22,4 @@ public class BackgroundNotificationBroadcastReceiver extends BroadcastReceiver {
         }
 
     }
-}
+}*/

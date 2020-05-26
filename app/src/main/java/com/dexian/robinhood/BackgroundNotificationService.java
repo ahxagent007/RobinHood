@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/*
 public class BackgroundNotificationService extends Service {
 
     String TAG = "XIAN";
@@ -136,38 +136,6 @@ public class BackgroundNotificationService extends Service {
         //stoptimertask();
     }
 
-    /*private Timer timer;
-    private TimerTask timerTask;
-    long oldTime=0;
-    public void startTimer() {
-        //set a new Timer
-        timer = new Timer();
-
-        //initialize the TimerTask's job
-        initializeTimerTask();
-
-        //schedule the timer, to wake up every 1 second
-        timer.schedule(timerTask, 1000, 1000); //
-    }
-
-    public int counter=0;
-    public void initializeTimerTask() {
-        timerTask = new TimerTask() {
-            public void run() {
-                Log.i(TAG, "in timer ++++  "+ (counter++));
-            }
-        };
-    }
-
-
-    public void stoptimertask() {
-        //stop the timer, if it's not already null
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-    }*/
-
 
 
     @Override
@@ -175,4 +143,4 @@ public class BackgroundNotificationService extends Service {
         // TODO: Return the communication channel to the service.
         return null;
     }
-}
+}*/

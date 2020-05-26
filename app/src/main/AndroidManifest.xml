@@ -14,16 +14,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.Rescue"></activity>
+        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".Activity.Admin.AdminAddNews" />
+        <activity android:name=".Activity.Admin.AdminAddPicture" />
+        <activity android:name=".Activity.Admin.AdminAddBkash" />
+        <activity android:name=".Activity.Rescue" />
         <activity android:name=".Activity.WebsiteView" />
         <activity android:name=".Activity.RescueNewsActivity" />
         <activity android:name=".Activity.PhotoGalleryActivity" />
         <activity android:name=".Activity.BeVolunteer" />
-
+        <!--
         <service
             android:name=".BackgroundNotificationService"
             android:enabled="true" />
@@ -33,7 +39,7 @@
             android:enabled="true"
             android:exported="true"
             android:label="RestartServiceWhenStopped" />
-
+        -->
         <activity android:name=".Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -57,5 +57,8 @@ dependencies {
     // Add the Firebase SDK for Crashlytics.
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
 
+    //link preview
+    implementation 'com.freesoulapps:preview-android:0.3.3'
+
 
 }

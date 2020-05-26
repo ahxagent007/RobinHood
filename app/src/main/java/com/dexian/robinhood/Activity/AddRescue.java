@@ -4,16 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.PermissionChecker;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +38,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.dexian.robinhood.DB.Area;
 import com.dexian.robinhood.DB.RescueDB;
 import com.dexian.robinhood.DB.Status;
@@ -55,10 +64,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class AddRescue extends AppCompatActivity {
@@ -71,7 +84,6 @@ public class AddRescue extends AppCompatActivity {
     Button btn_uploadImage, btn_rescueDone;
     ProgressBar PB_uploading, PB_loading;
 
-    private static final int PICK_IMAGE_REQUEST = 111;
     private Uri mImageUri;
 
     RescueDB rescueDB;
@@ -80,8 +92,7 @@ public class AddRescue extends AppCompatActivity {
     double latitude;
     String IP = "***.***.***.***";
     Long ID_firebase = (long)0;
-    //FIREBASE
-    private StorageReference mStorageRef;
+    //FIREBASE1
     private DatabaseReference mDatabaseRef, mDatabaseRefArea;
 
     @Override
@@ -107,14 +118,6 @@ public class AddRescue extends AppCompatActivity {
 
         generateLocation();
         simpleRequestGetIP();
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            // do your stuff
-        } else {
-            signIn("xian@xian.com", "123456789");
-        }
 
         final ArrayList<String> areasList = new ArrayList<String>();
 
@@ -157,7 +160,10 @@ public class AddRescue extends AppCompatActivity {
         btn_uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFileChooser();
+                if(checkAndRequestPermissions()){
+                    openFileChooser();
+                }
+
             }
         });
 
@@ -290,7 +296,7 @@ public class AddRescue extends AppCompatActivity {
 
         }
     };
-
+/*
     private void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -324,12 +330,7 @@ public class AddRescue extends AppCompatActivity {
         if(mImageUri != null){
 
             Toast.makeText(getApplicationContext(),"Uploading Image",Toast.LENGTH_SHORT).show();
-           /* try {
-                Bitmap b = decodeUri(getApplicationContext(),mImageUri,100);
-                mImageUri = getImageUri(getApplicationContext(),b);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }*/
+
             final StorageReference fileRef = mStorageRef.child(rescueDB.getID()+"."+getFileExtention(mImageUri));
 
             fileRef.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -382,51 +383,198 @@ public class AddRescue extends AppCompatActivity {
             btn_rescueDone.setEnabled(true);
         }
 
+    }*/
+
+    private static final int PICK_IMAGE_REQUEST = 11;
+    private Uri mImageUri1, mImageUri2, mImageUri3;
+    private StorageReference mStorageRef;
+
+    private void openFileChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,PICK_IMAGE_REQUEST);
+
     }
 
-    FirebaseAuth mAuth;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    private void signInAnonymously() {
-        mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                // do your stuff
-                Log.i(TAG,"signInAnonymously DONE");
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+            mImageUri1 = data.getData();
+            try {
+                Long curTime = System.currentTimeMillis();
+                Bitmap resizedBitmap = decodeUri(getApplication(), mImageUri1, 400);
+                String path = saveBitmapToDevice(resizedBitmap, curTime+"_1");
+                File f = new File(path);
+                mImageUri1 = Uri.fromFile(f);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-        })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Log.e(TAG, "signInAnonymously:FAILURE", exception);
-                    }
-                });
+
+            Glide.with(getApplicationContext()).load(mImageUri1).transform(new CenterInside(), new RoundedCorners(15)).dontAnimate().into(IV_uploadImage);
+
+        }
     }
 
-    private void signIn(String email, String pass){
+    String fname1, fname2, fname3;
 
-        mAuth.signInWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            //Log.i(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Log.i(TAG, "SING IN DONE");
-                            /*new SharedPreffClass(getApplicationContext()).saveUserName(user.getDisplayName());
-                            new SharedPreffClass(getApplicationContext()).setUserID(user.getUid());
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));*/
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.i(TAG, "Singin Fails");
-                            //updateUI(null);
-                            // ...
+    private String saveBitmapToDevice(Bitmap bitmap, String name){
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/ROBINHOOD");
+        myDir.mkdirs();
+        String directory = root + "/ROBINHOOD/";
+        //Random generator = new Random();
+        //int n = 10000;
+        //n = generator.nextInt(n);
+
+        File file = null;
+        String fname = null;
+
+        fname1 = "RobinHood_"+name + ".jpg";
+        file = new File(myDir, fname1);
+        fname = fname1;
+
+        //File file = new File(myDir, fname);
+        Log.i(TAG, "" + file);
+        if (file.exists()){
+            file.delete();
+        }
+
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            Log.i(TAG, "saveBitmapToDevice : "+e);
+            e.printStackTrace();
+            return null;
+        }
+        Log.i(TAG, directory+fname);
+        return directory+fname;
+    }
+    public static Bitmap decodeUri(Context c, Uri uri, final int requiredSize) throws FileNotFoundException {
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(c.getContentResolver().openInputStream(uri), null, o);
+
+        int width_tmp = o.outWidth
+                , height_tmp = o.outHeight;
+        int scale = 1;
+
+        while(true) {
+            if(width_tmp / 2 < requiredSize || height_tmp / 2 < requiredSize)
+                break;
+            width_tmp /= 2;
+            height_tmp /= 2;
+            scale *= 2;
+        }
+
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        return BitmapFactory.decodeStream(c.getContentResolver().openInputStream(uri), null, o2);
+    }
+
+    String[] appPermissions = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    final int PERMISSION_REQUES_CODE = 101;
+    public boolean checkAndRequestPermissions(){
+
+        List<String> listPermissinsNeeded = new ArrayList<>();
+
+        for(String perm : appPermissions){
+
+            if (Build.VERSION.SDK_INT >= 23) {
+                if(getApplicationContext().checkSelfPermission(perm) != PackageManager.PERMISSION_GRANTED){
+                    listPermissinsNeeded.add(perm);
+                }
+            }else{
+                if(PermissionChecker.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PermissionChecker.PERMISSION_GRANTED){
+                    listPermissinsNeeded.add(perm);
+                }
+            }
+
+
+        }
+
+        if(!listPermissinsNeeded.isEmpty()){
+            ActivityCompat.requestPermissions(AddRescue.this,
+                    listPermissinsNeeded.toArray(new String[listPermissinsNeeded.size()]),
+                    PERMISSION_REQUES_CODE);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUES_CODE:{
+                Log.i(TAG,"PERMISSION RESULT" );
+
+            }
+
+
+        }
+    }
+
+
+    private void uploadFileToFirebase(){
+        if(mImageUri1 != null){
+
+            Toast.makeText(getApplicationContext(),"Uploading Main Picture",Toast.LENGTH_SHORT).show();
+
+            //final StorageReference fileRef = mStorageRef.child(RingNo+"."+getFileExtention(mImageUri));fname
+            final StorageReference fileRef = mStorageRef.child(rescueDB.getID()+"_"+fname1);
+
+            fileRef.putFile(mImageUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                    //Toast.makeText(getApplicationContext(),"SUCCESSFULLY ADDED",Toast.LENGTH_LONG).show();
+
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String propicURL = uri.toString();
+                            Log.i(TAG,"DOWNLOAD URL = "+propicURL);
+                            //addToFirebaseDatabase(propicURL);
+                            rescueDB.setPictureName(propicURL);
+
+                            mDatabaseRef.child(""+rescueDB.getID()).setValue(rescueDB);
+
+                            Log.i(TAG,"PIC URL = "+propicURL);
+
+
+                            //resetAll();
                         }
+                    });
 
-                        // ...
-                    }
-                });
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(),"UPLOAD FAILED",Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "IMG 1 UPLOAD FAILED : "+e);
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                    PB_loading.setProgress((int)progress);
+                }
+            });
+
+        }
 
     }
 
@@ -438,6 +586,7 @@ public class AddRescue extends AppCompatActivity {
         ResetAll();
 
     }
+
 
     private void ResetAll() {
         new Handler().post(new Runnable() {

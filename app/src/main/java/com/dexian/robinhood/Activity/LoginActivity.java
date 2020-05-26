@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(ET_pass.length()>0 && ET_email.length()>0){
                     btn_login.setEnabled(false);
                     signIn(ET_email.getText().toString(), ET_pass.getText().toString());
+                    Toast.makeText(getApplicationContext(), "LOGGING IN PLEASE WAIT", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(getApplicationContext(), "PLEASE ENTER EMAIL AND PASSWORD!", Toast.LENGTH_LONG).show();
                 }

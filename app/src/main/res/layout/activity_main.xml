@@ -171,31 +171,31 @@
                     android:weightSum="3">
 
                     <Button
-                        android:id="@+id/btn_adminAddVet"
+                        android:id="@+id/btn_addBkashDonate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/pressed_dark_blue"
                         android:layout_margin="5dp"
-                        android:text="Add VET"
+                        android:text="Add Donation"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
 
                     <Button
-                        android:id="@+id/btn_adminAddEmergency"
+                        android:id="@+id/btn_addRescueNews"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/pressed_dark_blue"
                         android:layout_margin="5dp"
-                        android:text="Add Emergency"
+                        android:text="Add Rescue News"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
 
                     <Button
-                        android:id="@+id/btn_adminAddMember"
+                        android:id="@+id/btn_addPicture"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -215,7 +215,7 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <Button
+                    <!--<Button
                         android:id="@+id/btn_adminAddPost"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -237,7 +237,7 @@
                         android:text="Add bKash"
                         android:textColor="@color/white"
                         android:textSize="10dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"/>-->
 
                     <Button
                         android:id="@+id/btn_adminLogout"

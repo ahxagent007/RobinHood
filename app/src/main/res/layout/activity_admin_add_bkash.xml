@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Admin.AdminAddBkash"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <EditText
+        android:id="@+id/ET_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:inputType="phone"/>
+
+    <EditText
+        android:id="@+id/ET_reff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Reference"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/ET_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Amount"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:background="@drawable/pressed_dark_red"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>
