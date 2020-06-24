@@ -168,7 +168,7 @@ public class RescueList extends AppCompatActivity {
                 TV_details = itemView.findViewById(R.id.TV_details);
                 TV_location = itemView.findViewById(R.id.TV_location);
                 TV_status = itemView.findViewById(R.id.TV_status);
-                btn_rescueOP = itemView.findViewById(R.id.btn_rescueOP);
+                //btn_rescueOP = itemView.findViewById(R.id.btn_rescueOP);
                 TV_time = itemView.findViewById(R.id.TV_time);
 
                 itemView.setOnClickListener(this);

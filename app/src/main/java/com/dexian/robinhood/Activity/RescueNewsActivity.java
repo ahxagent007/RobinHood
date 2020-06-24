@@ -56,27 +56,27 @@ public class RescueNewsActivity extends AppCompatActivity {
 
         PB_rescueNews.setVisibility(View.VISIBLE);
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("NEWS_LINK");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("RESCUE_NEWS");
 
-        final ArrayList<NewsLink> newsLinks = new ArrayList<NewsLink>();
+        final ArrayList<RescueNewsDB> rescueNewsDBS = new ArrayList<RescueNewsDB>();
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                newsLinks.clear();
+                rescueNewsDBS.clear();
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    NewsLink res = ds.getValue(NewsLink.class);
-                    newsLinks.add(res);
+                    RescueNewsDB res = ds.getValue(RescueNewsDB.class);
+                    rescueNewsDBS.add(res);
 
                 }
 
-                Collections.reverse(newsLinks);
+                Collections.reverse(rescueNewsDBS);
 
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                 RV_rescueNews.setLayoutManager(mLayoutManager);
 
-                RecyclerView.Adapter mRecycleAdapter = new RecycleViewAdapterForRescueNews(getApplicationContext(), newsLinks);
+                RecyclerView.Adapter mRecycleAdapter = new RecycleViewAdapterForRescueNews(getApplicationContext(), rescueNewsDBS);
                 RV_rescueNews.setAdapter(mRecycleAdapter);
 
                 PB_rescueNews.setVisibility(View.INVISIBLE);
@@ -94,20 +94,20 @@ public class RescueNewsActivity extends AppCompatActivity {
     public class RecycleViewAdapterForRescueNews extends RecyclerView.Adapter<RecycleViewAdapterForRescueNews.ViewHolder> {
 
 
-        ArrayList<NewsLink> newsLinks;
+        ArrayList<RescueNewsDB> rescueNewsDBS;
         Context context;
 
-        public RecycleViewAdapterForRescueNews(Context context, ArrayList<NewsLink> newsLinks) {
+        public RecycleViewAdapterForRescueNews(Context context, ArrayList<RescueNewsDB> rescueNewsDBS) {
             super();
             this.context = context;
-            this.newsLinks = newsLinks;
+            this.rescueNewsDBS = rescueNewsDBS;
 
         }
 
         @Override
         public RecycleViewAdapterForRescueNews.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.single_rescue_news_link, viewGroup, false);
+                    .inflate(R.layout.single_rescue_news, viewGroup, false);
 
             RecycleViewAdapterForRescueNews.ViewHolder viewHolder = new RecycleViewAdapterForRescueNews.ViewHolder(v);
             return viewHolder;
@@ -117,20 +117,15 @@ public class RescueNewsActivity extends AppCompatActivity {
         public void onBindViewHolder(RecycleViewAdapterForRescueNews.ViewHolder viewHolder, final int i) {
 
 
-            /*RequestOptions options = new RequestOptions()
+            RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.loading_image)
-                    .error(R.drawable.image_not_found);*/
+                    .error(R.drawable.image_not_found);
 
-            //Glide.with(getApplicationContext()).load(rescueDBS.get(i).getPictureLink()).apply(options).into(viewHolder.IV_RescueNews);
-            //Glide.with(getApplicationContext()).load(rescueDBS.get(i).getPictureLink()).transform(new CenterInside(),new RoundedCorners(10)).dontAnimate().into(viewHolder.IV_RescueNews);
+            Glide.with(getApplicationContext()).load(rescueNewsDBS.get(i).getPictureLink()).apply(options).into(viewHolder.IV_RescueNews);
+            //Glide.with(getApplicationContext()).load(rescueNewsDBS.get(i).getPictureLink()).transform(new CenterInside(),new RoundedCorners(10)).dontAnimate().into(viewHolder.IV_RescueNews);
 
 
-            if(newsLinks.get(i).getUrl() != null && newsLinks.get(i).getUrl() != null && !newsLinks.get(i).getUrl().equals("")){
-                viewHolder.mPreview.setData(newsLinks.get(i).getUrl());
-            }
-
-            Log.i(TAG, newsLinks.get(i).getUrl());
 
             viewHolder.setClickListener(new ItemClickListener() {
                 @Override
@@ -139,7 +134,7 @@ public class RescueNewsActivity extends AppCompatActivity {
 
                     } else {
                         //Open URL
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsLinks.get(position).getUrl()));
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(rescueNewsDBS.get(position).getNewsLink()));
                         startActivity(browserIntent);
                     }
                 }
@@ -148,20 +143,19 @@ public class RescueNewsActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return newsLinks.size();
+            return rescueNewsDBS.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
-            //ImageView IV_RescueNews;
-            Preview mPreview;
+            ImageView IV_RescueNews;
 
             private ItemClickListener clickListener;
 
             public ViewHolder(View itemView) {
                 super(itemView);
 
-                mPreview = itemView.findViewById(R.id.LINK_preview);
+                IV_RescueNews = itemView.findViewById(R.id.IV_RescueNews);
 
                 itemView.setOnClickListener(this);
                 itemView.setOnLongClickListener(this);

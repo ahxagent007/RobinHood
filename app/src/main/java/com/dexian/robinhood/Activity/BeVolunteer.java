@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class BeVolunteer extends AppCompatActivity {
 
 //https://secretdevbd.com/static/home/img/robin_hood_terms.jpg
+    String TAG= "XIAN";
 
     Button btn_register;
     CheckBox CB_terms;
@@ -72,11 +74,7 @@ public class BeVolunteer extends AppCompatActivity {
         TV_terms = findViewById(R.id.TV_terms);
         ET_Phone = findViewById(R.id.ET_Phone);
 
-
-
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("VOLUNTEER");
-
-
 
         CB_terms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -154,8 +152,8 @@ public class BeVolunteer extends AppCompatActivity {
 
         mDatabaseRef.child(""+volunteerDB.getID()).setValue(volunteerDB);
 
-        Toast.makeText(getApplicationContext(), "Your request successfully added, we will call you soon", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getApplicationContext(), "Your request successfully added, Please send us a mail to help us find your quickly.", Toast.LENGTH_LONG).show();
+        sendEmail(volunteerDB.toString());
         resetAll();
     }
 
@@ -216,5 +214,30 @@ public class BeVolunteer extends AppCompatActivity {
         WindowManager windowmanager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
+    }
+
+    protected void sendEmail(String msg) {
+        Log.i(TAG, "Send email");
+
+        String[] TO = {"animalcaretrustbangladesh@gmail.com"};
+        String[] CC = {"ahx.agent007@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Apply for RobinHood Volunteer");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i(TAG, "Finished sending email...");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(BeVolunteer.this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

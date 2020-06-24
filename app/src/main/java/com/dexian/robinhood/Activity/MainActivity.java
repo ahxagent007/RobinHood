@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TouchyWebView WV_fbPage;
 
-    Button btn_adminLogin, btn_rescue, btn_donate, btn_rescueNews, btn_beVolunteer, btn_callUs, btn_pictures;
+    Button btn_adminLogin, btn_rescue, btn_donate, btn_rescueNews, btn_beVolunteer, btn_callUs, btn_pictures, btn_join_group;
     TextView TV_news1, TV_news2, TV_news3;
     LinearLayout LL_admin;
     //Button btn_adminLogout, btn_adminAddbKash, btn_adminAddPost, btn_adminAddMember, btn_adminAddEmergency, btn_adminAddVet, btn_website, btn_emergency_call;
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         btn_beVolunteer = findViewById(R.id.btn_beVolunteer);
         btn_callUs = findViewById(R.id.btn_callUs);
         btn_pictures = findViewById(R.id.btn_pictures);
-
+        btn_join_group = findViewById(R.id.btn_join_group);
         LL_admin = findViewById(R.id.LL_admin);
         /*btn_adminLogout = findViewById(R.id.btn_adminLogout);
         btn_adminAddbKash = findViewById(R.id.btn_adminAddbKash);
@@ -119,17 +119,27 @@ public class MainActivity extends AppCompatActivity {
         //http://animalcaretrustbangladesh.org/
         //https://m.facebook.com/junglesdad/
         //WV_fbPage.loadUrl("http://animalcaretrustbangladesh.org/");
-
+        btn_join_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/groups/249709345667675/"));
+                startActivity(browserIntent);
+            }
+        });
         btn_pictures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), TestActivity.class));
+                Intent website = new Intent(getApplicationContext(),WebsiteView.class);
+                website.putExtra("URL", "https://www.facebook.com/pg/junglesdad/photos");
+                startActivity(website);
             }
         });
         btn_website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), WebsiteView.class));
+                Intent website = new Intent(getApplicationContext(),WebsiteView.class);
+                website.putExtra("URL", "http://animalcaretrustbangladesh.org/");
+                startActivity(website);
             }
         });
 
@@ -173,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         btn_addPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(getApplicationContext(), AdminAddPicture.class));
             }
         });

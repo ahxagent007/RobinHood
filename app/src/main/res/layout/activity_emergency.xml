@@ -6,18 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Emergency"
     android:orientation="vertical">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_big_name"
+        android:text="@string/robinhood"
         android:textColor="@color/darkRed"
         android:textSize="25dp"
         android:textStyle="bold"
         android:fontFamily="serif"
         android:gravity="center"
-        android:layout_margin="10dp"
-        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rescuer"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        />ding="10dp"
         />
 
     <TextView

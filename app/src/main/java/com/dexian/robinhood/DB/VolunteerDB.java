@@ -127,4 +127,22 @@ public class VolunteerDB {
     public void setReff(String reff) {
         Reff = reff;
     }
+
+    @Override
+    public String toString() {
+        return "VolunteerDB{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", FatherName='" + FatherName + '\'' +
+                ", MotherName='" + MotherName + '\'' +
+                ", NID='" + NID + '\'' +
+                ", EDU='" + EDU + '\'' +
+                ", WhyWork='" + WhyWork + '\'' +
+                ", Pets='" + Pets + '\'' +
+                ", Help='" + Help + '\'' +
+                ", Reff='" + Reff + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", Status='" + Status + '\'' +
+                '}';
+    }
 }
