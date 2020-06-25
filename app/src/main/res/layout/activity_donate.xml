@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/rescuer"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
         android:fontFamily="serif"
@@ -40,41 +40,97 @@
         android:fontFamily="monospace"
         android:padding="5dp"/>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/bkash"/>
+
+        <TextView
+            android:id="@+id/TV_bkash01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading bKash Number..."
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:fontFamily="monospace"
+            android:padding="5dp"/>
+        <TextView
+            android:id="@+id/TV_bkash02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading bKash Number..."
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:fontFamily="monospace"
+            android:padding="5dp"/>
+        <TextView
+            android:id="@+id/TV_bkash03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading bKash Number..."
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:fontFamily="monospace"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:src="@drawable/bkash"/>
+        android:src="@drawable/dbbl_logo"/>
 
     <TextView
-        android:id="@+id/TV_bkash01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Loading bKash Number..."
+        android:text="Name: Afzal Khan"
         android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:textSize="18dp"
         android:fontFamily="monospace"
         android:padding="5dp"/>
     <TextView
-        android:id="@+id/TV_bkash02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Loading bKash Number..."
+        android:text="A/C: 101-101-0067401"
         android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:textSize="18dp"
         android:fontFamily="monospace"
         android:padding="5dp"/>
     <TextView
-        android:id="@+id/TV_bkash03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Loading bKash Number..."
+        android:text="Dutch Bangla bank limited."
         android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:textSize="18dp"
         android:fontFamily="monospace"
         android:padding="5dp"/>
+
+</LinearLayout>
+
+
+</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

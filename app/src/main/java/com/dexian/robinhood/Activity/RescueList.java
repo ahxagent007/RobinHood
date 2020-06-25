@@ -121,8 +121,8 @@ public class RescueList extends AppCompatActivity {
 
             viewHolder.TV_status.setText("Status: "+rescueDBS.get(i).getStatus());
 
-            if(rescueDBS.get(i).getStatus().equalsIgnoreCase("PENDING")){
-                viewHolder.btn_rescueOP.setVisibility(View.VISIBLE);
+            /*if(rescueDBS.get(i).getStatus().equalsIgnoreCase("PENDING")){
+                //viewHolder.btn_rescueOP.setVisibility(View.VISIBLE);
 
                 viewHolder.btn_rescueOP.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -132,7 +132,7 @@ public class RescueList extends AppCompatActivity {
                 });
             }else{
                 viewHolder.btn_rescueOP.setVisibility(View.GONE);
-            }
+            }*/
 
 
 
