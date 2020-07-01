@@ -225,19 +225,19 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <!--<Button
-                        android:id="@+id/btn_adminAddPost"
+                    <Button
+                        android:id="@+id/btn_rescueList"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/pressed_dark_blue"
                         android:layout_margin="5dp"
-                        android:text="Add Post"
+                        android:text="Rescue List"
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:textStyle="bold"/>
 
-                    <Button
+                    <!--<Button
                         android:id="@+id/btn_adminAddbKash"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

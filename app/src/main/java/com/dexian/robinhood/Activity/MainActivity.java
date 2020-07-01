@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout LL_admin;
     //Button btn_adminLogout, btn_adminAddbKash, btn_adminAddPost, btn_adminAddMember, btn_adminAddEmergency, btn_adminAddVet, btn_website, btn_emergency_call;
     Button btn_website, btn_emergency_call;
-    Button btn_addBkashDonate, btn_addRescueNews, btn_addPicture, btn_adminLogout;
+    Button btn_addBkashDonate, btn_addRescueNews, btn_addPicture, btn_adminLogout, btn_rescueList;
 
     ImageView IV_FB, IV_YT;
 
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         btn_pictures = findViewById(R.id.btn_pictures);
         btn_join_group = findViewById(R.id.btn_join_group);
         LL_admin = findViewById(R.id.LL_admin);
+        btn_rescueList = findViewById(R.id.btn_rescueList);
         /*btn_adminLogout = findViewById(R.id.btn_adminLogout);
         btn_adminAddbKash = findViewById(R.id.btn_adminAddbKash);
         btn_adminAddPost = findViewById(R.id.btn_adminAddPost);
@@ -154,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
         btn_rescue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Rescue.class));
+                //startActivity(new Intent(getApplicationContext(), Rescue.class));
+                startActivity(new Intent(getApplicationContext(), AddRescue.class));
 
             }
         });
@@ -188,7 +190,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btn_rescueList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RescueList.class));
+            }
+        });
 
         btn_donate.setOnClickListener(new View.OnClickListener() {
             @Override
