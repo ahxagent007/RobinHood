@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         btn_join_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/groups/249709345667675/"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/groups/animalcarebangladesh/"));
                 startActivity(browserIntent);
             }
         });

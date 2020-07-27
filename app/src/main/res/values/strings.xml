@@ -2,5 +2,5 @@
     <string name="app_name">RobinHood</string>
     <string name="app_big_name">RobinHood the Animal Rescuer</string>
     <string name="robinhood">RobinHood</string>
-    <string name="rescuer">the Animal Rescuer</string>
+    <string name="rescuer">The Animal Rescuer\n(Animal Care Trust Bangladesh)</string>
 </resources>

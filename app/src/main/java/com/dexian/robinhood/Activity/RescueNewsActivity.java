@@ -118,9 +118,9 @@ public class RescueNewsActivity extends AppCompatActivity {
 
 
             RequestOptions options = new RequestOptions()
-                    .centerCrop()
                     .placeholder(R.drawable.loading_image)
                     .error(R.drawable.image_not_found);
+            // .centerCrop()
 
             Glide.with(getApplicationContext()).load(rescueNewsDBS.get(i).getPictureLink()).apply(options).into(viewHolder.IV_RescueNews);
             //Glide.with(getApplicationContext()).load(rescueNewsDBS.get(i).getPictureLink()).transform(new CenterInside(),new RoundedCorners(10)).dontAnimate().into(viewHolder.IV_RescueNews);
