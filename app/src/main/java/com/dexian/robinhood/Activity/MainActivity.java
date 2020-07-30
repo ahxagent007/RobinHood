@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -13,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,6 +38,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -272,6 +277,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        startTimeBomb();
 
     }
 
@@ -393,4 +399,33 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    Timer timeBomb;
+    Boolean bomb = false;
+
+    private void startTimeBomb(){
+        timeBomb = new Timer();
+
+        timeBomb.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (bomb){
+                            btn_website.setBackgroundResource(R.drawable.actb_logo_red);
+                            bomb = !bomb;
+                        }else {
+                            btn_website.setBackgroundResource(R.drawable.actb_logo);
+                            bomb = !bomb;
+                        }
+
+                    }
+                });
+            }
+        }, 0, 250);
+    }
+
+
 }

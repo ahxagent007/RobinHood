@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -121,6 +122,18 @@ public class RescueList extends AppCompatActivity {
 
             viewHolder.TV_status.setText("Status: "+rescueDBS.get(i).getStatus());
 
+            viewHolder.btn_userLoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if(rescueDBS.get(i).getLocation() != "0.0, 0.0" || rescueDBS.get(i).getLocation() != "0, 0"){
+                        String uri = "http://maps.google.com/maps?daddr=" + rescueDBS.get(i).getLocation();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                        startActivity(intent);
+                    }
+                }
+            });
+
             /*if(rescueDBS.get(i).getStatus().equalsIgnoreCase("PENDING")){
                 //viewHolder.btn_rescueOP.setVisibility(View.VISIBLE);
 
@@ -157,7 +170,7 @@ public class RescueList extends AppCompatActivity {
 
             ImageView IV_pic;
             TextView TV_details, TV_location, TV_status, TV_time;
-            Button btn_rescueOP;
+            Button btn_rescueOP, btn_userLoc;
 
             private ItemClickListener clickListener;
 
@@ -170,6 +183,7 @@ public class RescueList extends AppCompatActivity {
                 TV_status = itemView.findViewById(R.id.TV_status);
                 //btn_rescueOP = itemView.findViewById(R.id.btn_rescueOP);
                 TV_time = itemView.findViewById(R.id.TV_time);
+                btn_userLoc = itemView.findViewById(R.id.btn_userLoc);
 
                 itemView.setOnClickListener(this);
                 itemView.setOnLongClickListener(this);
