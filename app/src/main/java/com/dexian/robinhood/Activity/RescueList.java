@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterInside;
@@ -122,14 +123,18 @@ public class RescueList extends AppCompatActivity {
 
             viewHolder.TV_status.setText("Status: "+rescueDBS.get(i).getStatus());
 
+            viewHolder.TV_phone.setText("Phone: "+rescueDBS.get(i).getPhone());
+
             viewHolder.btn_userLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    if(rescueDBS.get(i).getLocation() != "0.0, 0.0" || rescueDBS.get(i).getLocation() != "0, 0"){
+                    if(rescueDBS.get(i).getLocation() != "0.0,0.0" || rescueDBS.get(i).getLocation() != "0,0"){
                         String uri = "http://maps.google.com/maps?daddr=" + rescueDBS.get(i).getLocation();
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                         startActivity(intent);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "No Location Registered", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -169,7 +174,7 @@ public class RescueList extends AppCompatActivity {
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
             ImageView IV_pic;
-            TextView TV_details, TV_location, TV_status, TV_time;
+            TextView TV_details, TV_location, TV_status, TV_time, TV_phone;
             Button btn_rescueOP, btn_userLoc;
 
             private ItemClickListener clickListener;
@@ -184,6 +189,7 @@ public class RescueList extends AppCompatActivity {
                 //btn_rescueOP = itemView.findViewById(R.id.btn_rescueOP);
                 TV_time = itemView.findViewById(R.id.TV_time);
                 btn_userLoc = itemView.findViewById(R.id.btn_userLoc);
+                TV_phone = itemView.findViewById(R.id.TV_phone);
 
                 itemView.setOnClickListener(this);
                 itemView.setOnLongClickListener(this);
