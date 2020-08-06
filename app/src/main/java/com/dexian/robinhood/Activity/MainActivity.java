@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
         btn_rescueNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RescueNewsActivity.class));
+                startActivity(new Intent(getApplicationContext(), NewNewsActivity.class));
             }
         });
 
