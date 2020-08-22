@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NewNewsActivity"></activity>
+        <activity android:name=".Activity.Admin.Clinic"></activity>
+        <activity android:name=".Activity.NewNewsActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".Activity.Admin.AdminAddNews" />
         <activity android:name=".Activity.Admin.AdminAddPicture" />

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.dexian.robinhood.Activity.Admin.AdminAddBkash;
 import com.dexian.robinhood.Activity.Admin.AdminAddNews;
 import com.dexian.robinhood.Activity.Admin.AdminAddPicture;
+import com.dexian.robinhood.Activity.Admin.Clinic;
 import com.dexian.robinhood.DB.Post;
 import com.dexian.robinhood.DB.bKash;
 import com.dexian.robinhood.R;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout LL_admin;
     //Button btn_adminLogout, btn_adminAddbKash, btn_adminAddPost, btn_adminAddMember, btn_adminAddEmergency, btn_adminAddVet, btn_website, btn_emergency_call;
     Button btn_website, btn_emergency_call;
-    Button btn_addBkashDonate, btn_addRescueNews, btn_addPicture, btn_adminLogout, btn_rescueList;
+    Button btn_addBkashDonate, btn_addRescueNews, btn_addPicture, btn_adminLogout, btn_rescueList, btn_clinic;
 
     ImageView IV_FB, IV_YT;
 
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         btn_join_group = findViewById(R.id.btn_join_group);
         LL_admin = findViewById(R.id.LL_admin);
         btn_rescueList = findViewById(R.id.btn_rescueList);
+        btn_clinic = findViewById(R.id.btn_clinic);
         /*btn_adminLogout = findViewById(R.id.btn_adminLogout);
         btn_adminAddbKash = findViewById(R.id.btn_adminAddbKash);
         btn_adminAddPost = findViewById(R.id.btn_adminAddPost);
@@ -242,6 +244,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), NewNewsActivity.class));
+            }
+        });
+
+        btn_clinic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Clinic.class));
             }
         });
 
@@ -415,9 +424,11 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         if (bomb){
                             btn_website.setBackgroundResource(R.drawable.actb_logo_red);
+                            //btn_clinic.setBackgroundResource(R.drawable.clinic);
                             bomb = !bomb;
                         }else {
                             btn_website.setBackgroundResource(R.drawable.actb_logo);
+                            //btn_clinic.setBackgroundResource(R.drawable.clinic_r);
                             bomb = !bomb;
                         }
 

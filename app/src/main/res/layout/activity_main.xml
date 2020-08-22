@@ -151,6 +151,28 @@
 
                 </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:gravity="center">
+
+
+                    <Button
+                        android:id="@+id/btn_clinic"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/pressed_clinic_1"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -464,8 +486,8 @@
 
                 <Button
                     android:id="@+id/btn_emergency_call"
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:background="@drawable/pressed_emergency_call"/>
 
             </LinearLayout>
