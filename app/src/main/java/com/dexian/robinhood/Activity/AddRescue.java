@@ -143,7 +143,7 @@ public class AddRescue extends AppCompatActivity {
             }
         });
 
-        mDatabaseRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+        /*mDatabaseRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
@@ -155,7 +155,9 @@ public class AddRescue extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
+
+        ID_firebase = System.currentTimeMillis();
 
         btn_uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,7 +188,7 @@ public class AddRescue extends AppCompatActivity {
                     rescueDB.setDetails(ET_details.getText().toString());
                     rescueDB.setArea(SP_area.getSelectedItem().toString());
                     rescueDB.setLocation(latitude+","+longitude);
-                    rescueDB.setID((ID_firebase+1));
+                    rescueDB.setID(ID_firebase);
                     rescueDB.setIP(IP);
                     rescueDB.setStatus("PENDING");
                     rescueDB.setTime(dddd);

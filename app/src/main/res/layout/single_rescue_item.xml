@@ -97,6 +97,16 @@
             android:layout_gravity="center"
             android:layout_margin="5dp"/>
 
+        <Button
+            android:id="@+id/btn_callPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call"
+            android:textColor="@color/white"
+            android:background="@drawable/pressed_dark_blue"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"/>
+
     </LinearLayout>
 
 </LinearLayout>
