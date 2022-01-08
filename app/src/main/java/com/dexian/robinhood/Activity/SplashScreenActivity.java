@@ -101,8 +101,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     String[] appPermissions = {
             Manifest.permission.CALL_PHONE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            //Manifest.permission.ACCESS_FINE_LOCATION
     };
 
     final int PERMISSION_REQUES_CODE = 101;

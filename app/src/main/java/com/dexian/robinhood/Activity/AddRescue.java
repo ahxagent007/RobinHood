@@ -116,7 +116,7 @@ public class AddRescue extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("RESCUE");
         mDatabaseRefArea = FirebaseDatabase.getInstance().getReference("AREA");
 
-        generateLocation();
+        //generateLocation();
         simpleRequestGetIP();
 
         final ArrayList<String> areasList = new ArrayList<String>();
@@ -187,7 +187,7 @@ public class AddRescue extends AppCompatActivity {
                     rescueDB.setPhone(ET_phone.getText().toString());
                     rescueDB.setDetails(ET_details.getText().toString());
                     rescueDB.setArea(SP_area.getSelectedItem().toString());
-                    rescueDB.setLocation(latitude+","+longitude);
+                    //rescueDB.setLocation(latitude+","+longitude);
                     rescueDB.setID(ID_firebase);
                     rescueDB.setIP(IP);
                     rescueDB.setStatus("PENDING");
